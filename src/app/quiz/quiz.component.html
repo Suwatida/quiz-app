@@ -1,0 +1,36 @@
+<div class="main vertical-center">
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" [checked]="!showlist">
+    <button (click)="onClickQuestionList()" class="btn btn-outline-primary" for="btnradio1">Each Question</button>
+
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" [checked]="showlist">
+    <button (click)="onClickQuestionList()" class="btn btn-outline-primary" for="btnradio2">Question List</button>
+  </div>
+
+  <div class="container" style="max-width: 800px;" *ngIf="!showlist">
+    <h2>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</h2>
+    <h3 class="mb-3 mt-3">{{ questions[currentQuestionIndex].text }}</h3>
+    <h4 class="mb-3 mt-3">{{ questions[currentQuestionIndex].choices }}</h4>
+
+    <!-- Rest of the question display code... -->
+
+    <div class="row g-2 mt-2">
+      <div class="col text-center">
+        <button (click)="onClickBack()" class="btn btn-primary" style="width: 100%;">Previous</button>
+        <button (click)="onClickNext()" class="btn btn-primary" style="width: 100%;">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="max-width: 800px;" *ngIf="showlist">
+    <h2>Question List</h2>
+    <ul>
+      <li *ngFor="let question of questions; let i = index">
+        <p>{{ i + 1 }}. {{ question.text }}</p>
+      </li>
+    </ul>
+    <div class="col-12 text-center h2">
+      <button (click)="onClickEach()" class="btn btn-outline-primary">Each Question</button>
+    </div>
+  </div>
+</div>
